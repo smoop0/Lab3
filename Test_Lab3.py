@@ -28,3 +28,30 @@ def test_bubble_sort_invalid():
     result = Lab3.bubble_sort(input_arr, 3)
 
     assert (result == [])
+
+def test_bubble_sort_elem_overflow():
+    result = []
+    input_arr = [64, 34, 25, 12, 22, 11, 90, 1, 2, 3]
+    test = 1
+
+    result = Lab3.bubble_sort(input_arr, 0)
+
+    assert (result == test)
+
+def test_bubble_sort_elem_none():
+    result = []
+    input_arr = []
+    test = 0
+
+    result = Lab3.bubble_sort(input_arr, 0)
+
+    assert (result == test)
+
+def test_bubble_sort_elem_string():
+    result = []
+    input_arr = ["asdaai", 1, 2342, 436]
+    test = 2
+
+    result = Lab3.bubble_sort(input_arr, 0)
+
+    assert (result == test)
