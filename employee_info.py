@@ -1,4 +1,4 @@
-# Define a dictionary to store employee information
+# Define a list of dictionaries to store employee information
 employee_data = [
     {"name": "John", "age": 30, "department": "Sales", "salary": 50000},
     {"name": "Jane", "age": 25, "department": "Marketing", "salary": 60000},
@@ -22,14 +22,22 @@ def calculate_average_salary():
     total = 0
     average = 0
 
-    #add your implementation to calculate here
+    for dict in employee_data:
+        if "salary" in dict:
+            total += dict["salary"]
 
+    average = total/(len(employee_data))
+    average = round(average, 2)
+    #add your implementation to calculate here
 
     return average
 
 def get_employees_by_dept(department):
     result = []
 
+    for dict in employee_data:
+        if dict["department"] == department:
+            result.append(dict)
     # Add your implementation from here
 
 
@@ -46,7 +54,13 @@ def display_records(employee_info):
     for item in employee_info:
         print((item["name"] + "\t" + str(item["age"]) + "\t" + item["department"] + "\t" + str(item["salary"])).expandtabs(15))
 
+def sort_employee_data(sortkey):
+    templist = employee_data.copy()
+    templist.sort(key=lambda x: x[sortkey])
+    return templist
+
 def display_main_menu():
+
 
     print("\n----- Employee information Tracker -----")
 
@@ -56,7 +70,7 @@ def display_main_menu():
     print("2 - Display average salary")
     print("3 - Display employee within age range")
     print("4 - Display employee in a department")
-
+    print("5 - Display employess sorted by type")
 
     print("Q - Quit")
 
@@ -79,10 +93,15 @@ def display_main_menu():
     elif option == '4':
         department = input("Name of Department = ")
         employee_info = get_employees_by_dept(department)
+        display_reco45rds(employee_info)
+
+    elif option == "5":
+        sortkey = input("Sort by = ")
+        employee_info = sort_employee_data(sortkey)
         display_records(employee_info)
 
     elif option == 'Q':
-        quit()
+        quit() 
 
 def main():
 
